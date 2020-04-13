@@ -1,10 +1,74 @@
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp(new Application());
+  runApp(new ListViewWidget());
 }
 
-class Application extends StatelessWidget {
+class ListViewWidget extends StatefulWidget {
+  @override
+  _ListViewWidgetState createState() => _ListViewWidgetState();
+}
+
+class _ListViewWidgetState extends State<ListViewWidget> {
+  List<int> items = new List();
+
+  @override
+  void initState() {
+    for(int i = 0;i<50; i++){
+      items.add(i);
+    }
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return MaterialApp(
+      title: "Dummy Application",
+      home: new Scaffold(
+        appBar: new AppBar(title : new Text("ListView widget"),),
+        body: new ListView.builder(
+            itemCount: items.length,
+            itemBuilder: (BuildContext context, int index){
+              return new ListTile(
+                  title: new Text("item no: $index"),
+                  trailing: new Icon(Icons.arrow_forward_ios));
+            }),
+      ),
+    );
+  }
+}
+
+
+/*class _ListViewWidgetState extends State<ListViewWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "ListView",
+      home: new Scaffold(
+        appBar: new AppBar(title: new Text("ListView Widget"),),
+        body: new ListView(
+          children: <Widget>[
+            new ListTile(
+              title: new Text("items 1"),
+              trailing: new Icon(Icons.arrow_forward_ios),
+            ),
+            new ListTile(
+              title: new Text("items 2"),
+              trailing: new Icon(Icons.arrow_forward_ios),
+            ),
+            new ListTile(
+              title: new Text("items 3"),
+              trailing: new Icon(Icons.arrow_forward_ios),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}*/
+
+
+/*class RowColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +76,7 @@ class Application extends StatelessWidget {
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text("Row & Column"),
-          backgroundColor: Colors.black, 
+          backgroundColor: Colors.black,
         ),
         body: new Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,8 +95,7 @@ class Application extends StatelessWidget {
       ),
     );
   }
-}
-
+}*/
 
 /*class Application extends StatefulWidget {
   @override
