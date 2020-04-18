@@ -1,11 +1,157 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:udemypracapp/pageViewSample.dart';
+import 'package:udemypracapp/sharedPreferenceSample.dart';
+import 'package:udemypracapp/showJsonData.dart';
+import 'package:udemypracapp/sliverAppBarSample.dart';
+import 'flutterIntermidiate.dart';
+import 'userDetails.dart';
+import 'notification.dart';
 
-void main(){
-  runApp(new MaterialApp(home: new BasicAppBarApplication()));
+void main() {
+  runApp(new MaterialApp(home: new TextFieldWidget()));
 }
 
-class BasicAppBarApplication extends StatefulWidget {
+class TextFieldWidget extends StatefulWidget {
+  @override
+  _TextFieldWidgetState createState() => _TextFieldWidgetState();
+}
+
+class _TextFieldWidgetState extends State<TextFieldWidget> {
+  final GlobalKey<ScaffoldState> _skey = new GlobalKey<ScaffoldState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      key: _skey,
+      appBar: new AppBar(
+        title: new Text("Flutter Practice"),
+      ),
+
+      //making drawer with user info
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text("Hussain Zamee"),
+              accountEmail: new Text("ahzamee@gmail.com"),
+              currentAccountPicture: new CircleAvatar(
+                backgroundColor: Colors.black54,
+                child: new Text("Z"),
+              ),
+              decoration: new BoxDecoration(color: Colors.blue),
+              otherAccountsPictures: <Widget>[
+                new CircleAvatar(
+                  backgroundColor: Colors.black38,
+                  child: new Text("A"),
+                ),
+                new CircleAvatar(
+                  backgroundColor: Colors.black38,
+                  child: new Text("H"),
+                )
+              ],
+            ),
+            new ListTile(
+              title: new Text("User Details"),
+              trailing: new Icon(Icons.arrow_forward_ios),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                  builder: (BuildContext context) => new DiffWidgets())),
+            ),
+            new ListTile(
+              title: new Text("Notification"),
+              trailing: new Icon(Icons.arrow_forward_ios),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                  new UserNotification("User Notifications"))),
+            ),
+            new ListTile(
+              title: new Text("Close"),
+              trailing: new Icon(Icons.close),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
+      ),
+      body: new Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          new Center(
+            child: new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new FlutterIntermediate()));
+              },
+              child: new Text("Flutter Intermediate"),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) => new DiffWidgets()));
+              },
+              child: new Text("Widgets Sample"),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new ShowJsonData()));
+              },
+              child: new Text("Show JSON Data"),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new PageViewSample()));
+              },
+              child: new Text("PageView"),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new SharedPreferenceSample()));
+              },
+              child: new Text("SharedPreference Sample"),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new SliverAppBarSample()));
+              },
+              child: new Text("SliverAppBar Sample"),
+            ),
+          ),
+          new Center(
+            child: new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    new UserNotification("User Notifications")));
+              },
+              child: new Text("Notification Panel"),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/*class BasicAppBarApplication extends StatefulWidget {
   @override
   _BasicAppBarApplicationState createState() => _BasicAppBarApplicationState();
 }
@@ -50,9 +196,10 @@ class _BasicAppBarApplicationState extends State<BasicAppBarApplication> with Si
           ],
         ),
       ),
-      /*body: new Center( //only for appbar
+      body: new Center( //only for appbar
         child: new Text(mtext),
-      ),*/
+      ),
+      
       body: new TabBarView(controller: _tabController,
           children: <Widget>[
             new Center(child: new Text("This is home Page"),),
@@ -73,8 +220,7 @@ class _BasicAppBarApplicationState extends State<BasicAppBarApplication> with Si
       ),
     );
   }
-}
-
+}*/
 
 /*class GridViewApplication extends StatefulWidget {
   @override
@@ -129,7 +275,6 @@ class _GridViewApplicationState extends State<GridViewApplication> {
 }
 */
 
-
 /*
 class ListViewWidget extends StatefulWidget {
   @override
@@ -166,7 +311,6 @@ class _ListViewWidgetState extends State<ListViewWidget> {
 }
 */
 
-
 /*class _ListViewWidgetState extends State<ListViewWidget> {
   @override
   Widget build(BuildContext context) {
@@ -194,7 +338,6 @@ class _ListViewWidgetState extends State<ListViewWidget> {
     );
   }
 }*/
-
 
 /*class RowColumn extends StatelessWidget {
   @override
@@ -257,7 +400,6 @@ class _applicationState extends State<GridViewApplication> {
     );
   }
 }*/
-
 
 /*class application extends StatelessWidget {
   @override
